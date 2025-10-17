@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/main.js" defer></script>
+    <title>Army Builder</title>
+</head>
+<body>
+    <header>
+        <h1>Steve's Shop</h1>
+        <nav>
+            <a href="index.html">Builder</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="cart.html">Cary</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+    <main id="shop">
+        <div class="filters">
+            <button onclick="filterItems('All')">All</button>
+            <button onclick="filterItems('Some')">Some</button>
+        </div>
+        <div id="items" class="item-grid"></div>
+    </main>
+</body>
+</html>
