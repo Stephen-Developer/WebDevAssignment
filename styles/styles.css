@@ -294,11 +294,11 @@ button { cursor: pointer; }
 
 .centered-rotating {
   display: block;
-  max-width: 100%;      /* scale down for small screens */
-  height: auto;         /* maintain aspect ratio */
-  margin: 0 auto;       /* center horizontally */
-  object-fit: cover;    /* ensures the image fills the container if width/height constrained */
-  object-position: center; /* keeps center visible */
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  object-fit: cover;
+  object-position: center;
   animation: rotate360 10s linear infinite;
 }
 
@@ -326,6 +326,6 @@ button { cursor: pointer; }
 
 .centered-container {
   display: flex;
-  justify-content: center;   /* horizontal center */
-  align-items: center;       /* vertical center */
+  justify-content: center;
+  align-items: center;
 }
