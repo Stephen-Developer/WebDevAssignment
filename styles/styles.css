@@ -1,6 +1,29 @@
-body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-header { background: #222; color: white; padding: 1rem; }
-nav a { color: white; margin-right: 1rem; text-decoration: none; }
+body { 
+  font-family: Arial, sans-serif; 
+  margin: 0; 
+  padding: 0; 
+}
+
+header { 
+  background: #222; 
+  color: white; 
+  padding: 1rem;
+}
+
+nav a { 
+  color: white; 
+  margin-right: 1rem; 
+  text-decoration: none; 
+}
+
+nav a:hover {
+  color: #237a23;
+}
+
+nav a.selected {
+  border: 2px solid #2a8f2a;
+  transform: scale(1.1);
+}
 
 /*Buttons*/
 button { cursor: pointer; }
@@ -77,10 +100,12 @@ button { cursor: pointer; }
 .unit-right {
   flex: 2 1 55%;
   min-width: 250px;
+  padding-right: 40px;
   overflow-y: auto;        /* scroll only inside right div if text is long */
 }
-.unit-right button {
-  
+.unit-right text {
+  font-size: 1.1rem;
+  line-height: 1.4;
 }
 
 /*Army*/
@@ -88,18 +113,18 @@ button { cursor: pointer; }
   list-style: none;
   padding: 0;
 }
-/*.army-item {
+.armyscreen-item {
   display: flex;
   align-items: center;
   gap: 1rem;
   border-bottom: 1px solid #ccc;
   padding: 0.5rem 0;
 }
-.army-item img {
+.armyscreen-item img {
   width: 229px;
   height: 237px;
   object-fit: cover;
-}*/
+}
 .army-total {
   font-weight: bold;
   margin-top: 1rem;
@@ -130,8 +155,6 @@ button { cursor: pointer; }
 .army-info {
   flex: 1;
 }
-
-
 
 .total {
   margin-top: 10px;
@@ -261,4 +284,29 @@ button { cursor: pointer; }
 .thumbnail-bar img.selected {
   border: 2px solid #2a8f2a;
   transform: scale(1.1);
+}
+
+/*About page*/
+.centered-image {
+  display: block;
+  max-width: 100%;      /* scale down for small screens */
+  height: auto;         /* maintain aspect ratio */
+  margin: 0 auto;       /* center horizontally */
+  object-fit: cover;    /* ensures the image fills the container if width/height constrained */
+  object-position: center; /* keeps center visible */
+}
+
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.centered-rotating {
+  display: block;
+  max-width: 100%;      /* scale down for small screens */
+  height: auto;         /* maintain aspect ratio */
+  margin: 0 auto;       /* center horizontally */
+  object-fit: cover;    /* ensures the image fills the container if width/height constrained */
+  object-position: center; /* keeps center visible */
+  animation: rotate360 10s linear infinite;
 }

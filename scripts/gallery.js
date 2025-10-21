@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Arrows
+  // On Screen Arrows
   prevBtn.addEventListener("click", () => changeImage((currentIndex - 1 + images.length) % images.length, 'left'));
   nextBtn.addEventListener("click", () => changeImage((currentIndex + 1) % images.length, 'right'));
 

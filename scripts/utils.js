@@ -21,7 +21,6 @@ function addToArmyWithSelected(id) {
   });
 
   localStorage.setItem("army", JSON.stringify(army));
-  //alert(`${unit.name} (${squad.models} models) added to army`);
 }
 
 window.addToArmyWithSelected = addToArmyWithSelected;
