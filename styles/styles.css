@@ -287,15 +287,6 @@ button { cursor: pointer; }
 }
 
 /*About page*/
-.centered-image {
-  display: block;
-  max-width: 100%;      /* scale down for small screens */
-  height: auto;         /* maintain aspect ratio */
-  margin: 0 auto;       /* center horizontally */
-  object-fit: cover;    /* ensures the image fills the container if width/height constrained */
-  object-position: center; /* keeps center visible */
-}
-
 @keyframes rotate360 {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -309,4 +300,32 @@ button { cursor: pointer; }
   object-fit: cover;    /* ensures the image fills the container if width/height constrained */
   object-position: center; /* keeps center visible */
   animation: rotate360 10s linear infinite;
+}
+
+@keyframes pulseText {
+  0% {
+    color: #333;
+    font-size: 4rem;
+  }
+  50% {
+    color: #2a8f2a;
+    font-size: 5rem;
+  }
+  100% {
+    color: #333;
+    font-size: 4rem;
+  }
+}
+
+.stylish-text {
+  margin:   auto;
+  text-align: center;
+  display: inline-block;         /* needed for scaling to work smoothly */
+  animation: pulseText 2s infinite ease-in-out;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center */
 }
