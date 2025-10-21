@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <h1>Steve's Shop</h1>
+        <h1>Death Guard List Builder</h1>
         <nav>
             <a href="index.html">Builder</a>
             <a href="gallery.html">Gallery</a>
@@ -18,17 +18,27 @@
             <a href="about.html">About</a>
         </nav>
     </header>
-    <main id="shop">
-        <div class="filters">
-            <button onclick="filterUnits('all')">All</button>
-            <button onclick="filterUnits('legendaryCharacter')">Legendary Character</button>
-            <button onclick="filterUnits('character')">Character</button>
-            <button onclick="filterUnits('battleLine')">Battle Line</button>
-            <button onclick="filterUnits('infantry')">Infantry</button>
-            <button onclick="filterUnits('beasts')">Beasts</button>
-            <button onclick="filterUnits('vehicles')">Vehicles</button>
-        </div>
-        <div id="units" class="unit-grid"></div>
+    <main class="store-layout">
+        <section class="unit-list">
+            <h2>Available Units</h2>
+            <div class="filters">
+                <button class="active" onclick="filterUnits('all')">All</button>
+                <button onclick="filterUnits('legendaryCharacter')">Legendary Character</button>
+                <button onclick="filterUnits('character')">Character</button>
+                <button onclick="filterUnits('battleLine')">Battle Line</button>
+                <button onclick="filterUnits('infantry')">Infantry</button>
+                <button onclick="filterUnits('beasts')">Beasts</button>
+                <button onclick="filterUnits('vehicle')">Vehicles</button>
+            </div>
+            <div id="units"></div>
+        </section>
+        <aside class="army-sidebar">
+            <h3>My Army</h3>
+            <div id="armyContainer"></div>
+            <div class="total">
+                <p>Total Points: <span id="totalPoints">0</span></p>
+            </div>
+        </aside>
     </main>
 </body>
 </html>

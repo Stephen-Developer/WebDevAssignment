@@ -6,8 +6,9 @@ function addToArmyWithSelected(id) {
 
   const army = JSON.parse(localStorage.getItem("army")) || [];
 
-  if (unit.unique && army.some(u => u.id === id)) {
-    alert(`${unit.name} is unique and already in your army.`);
+  const count = army.filter(u => u.id === id).length;
+  if (count >= unit.limit) {
+    alert(`${unit.name} has a limit of ${unit.limit} and you already have ${count} in your army.`);
     return;
   }
 
@@ -20,7 +21,7 @@ function addToArmyWithSelected(id) {
   });
 
   localStorage.setItem("army", JSON.stringify(army));
-  alert(`${unit.name} (${squad.models} models) added to army`);
+  //alert(`${unit.name} (${squad.models} models) added to army`);
 }
 
 window.addToArmyWithSelected = addToArmyWithSelected;

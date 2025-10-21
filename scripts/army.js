@@ -18,12 +18,13 @@ function renderArmy() {
             <h3>${u.name} (${u.models})</h3>
             <p>${u.points} points</p>
           </div>
-          <button onclick="removeUnit(${idx})">Remove</button>
+          <button class="button-primary" onclick="removeUnit(${idx})">Remove</button>
+          <button class="remove-btn" onclick="removeUnit(${idx})">Remove</button>
         </li>
       `).join("")}
     </ul>
     <p class="army-total">Total: ${total} points</p>
-    <button onclick="clearArmy()">Clear Army</button>
+    <button class="remove-btn" onclick="clearArmy()">Clear Army</button>
   `;
 }
 

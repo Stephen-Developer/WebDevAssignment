@@ -29,13 +29,16 @@ function displayUnit() {
 
   container.innerHTML = `
     <div class="unit-details">
-      <img src="${unit.image}" alt="${unit.name}">
-      <h2>${unit.name}</h2>
-      <p>${unit.description}</p>
-      <p><strong>Faction:</strong> ${unit.faction}</p>
-      <p id="points-${unit.id}">${defaultSquad.points} pts</p>
-      ${selectHTML}
-      <button onclick="addToArmyWithSelected(${unit.id})">Add to Army</button>
+      <div class="unit-left">
+        <h2>${unit.name}</h2>
+        <img src="${unit.image}" alt="${unit.name}">
+      </div>
+      <div class="unit-right">
+        <p>${unit.description}</p>
+        <p id="points-${unit.id}">${defaultSquad.points} pts</p>
+        ${selectHTML}
+        <button class="button-primary" onclick="addToArmyWithSelected(${unit.id})">Add to Army</button>
+      </div>
     </div>
   `;
 }
