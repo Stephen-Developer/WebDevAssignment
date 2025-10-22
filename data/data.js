@@ -38,7 +38,7 @@ const units = [
   {
     "id": 4,
     "name": "Chaos Spawn",
-    "category": "beasts",
+    "category": "beast",
     "image": "images/ChaosSpawn.jpg",
     "limit": 3,
     "allowedSquads": [

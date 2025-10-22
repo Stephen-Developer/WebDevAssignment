@@ -12,7 +12,7 @@
     <header>
         <h1>Death Guard List Builder</h1>
         <nav>
-            <a class="selected" href="index.html">Builder</a>
+            <a class="active" href="index.html">Builder</a>
             <a href="gallery.html">Gallery</a>
             <a href="army.html">Army</a>
             <a href="about.html">About</a>
@@ -22,13 +22,13 @@
         <section class="unit-list">
             <h2>Available Units</h2>
             <div class="filters">
-                <button class="active" onclick="filterUnits('all')">All</button>
-                <button onclick="filterUnits('legendaryCharacter')">Legendary Character</button>
-                <button onclick="filterUnits('character')">Character</button>
-                <button onclick="filterUnits('battleLine')">Battle Line</button>
-                <button onclick="filterUnits('infantry')">Infantry</button>
-                <button onclick="filterUnits('beasts')">Beasts</button>
-                <button onclick="filterUnits('vehicle')">Vehicles</button>
+                <button class="active" data-filter="all">All</button>
+                <button data-filter="legendaryCharacter">Legendary Character</button>
+                <button data-filter="character">Character</button>
+                <button data-filter="battleLine">Battle Line</button>
+                <button data-filter="infantry">Infantry</button>
+                <button data-filter="beast">Beasts</button>
+                <button data-filter="vehicle">Vehicles</button>
             </div>
             <div id="units">
                 <!-- Units dynamically added via JS -->
@@ -36,7 +36,9 @@
         </section>
         <aside class="army-sidebar">
             <h3>My Army</h3>
-            <div id="armyContainer"></div>
+            <div id="armyContainer">
+                <!-- Units dynamically added via JS -->
+            </div>
             <div class="total">
                 <p>Total Points: <span id="totalPoints">0</span></p>
             </div>

@@ -3,8 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/styles.css">
-    <script src="data/data.js"></script>
-    <script src="scripts/gallery.js"></script>
+    <script src="data/data.js" defer></script>
+    <script src="scripts/gallery.js" defer></script>
     <title>Gallery</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
     <h1>Death Guard List Builder</h1>
     <nav>
       <a href="index.html">Builder</a>
-      <a class="selected" href="gallery.html">Gallery</a>
+      <a class="active" href="gallery.html">Gallery</a>
       <a href="army.html">Army</a>
       <a href="about.html">About</a>
     </nav>
@@ -20,13 +20,12 @@
 <main class="gallery-container">
   <div class="main-image-container">
     <button class="arrow left-arrow" id="prevBtn">&#10094;</button>
-    <img id="mainImage" src="images/BiologusPutrifier.jpg" alt="Main Image">
+    <img id="mainImage" src="images/BiologusPutrifier.jpg" alt="Biologus Putrifier">
     <button class="arrow right-arrow" id="nextBtn">&#10095;</button>
   </div>
   <div class="thumbnail-bar" id="thumbnail-bar">
     <!-- Thumbnails dynamically added via JS -->
   </div>
 </main>
-<div id="footer"></div>
 </body>
 </html>

@@ -1,99 +1,109 @@
-const unitsContainer = document.getElementById("units");
-const armyContainer = document.getElementById("armyContainer");
-const totalPointsEl = document.getElementById("totalPoints");
+(() => {
+  const unitsContainer = document.getElementById("units");
+  const armyContainer = document.getElementById("armyContainer");
+  const totalPointsEl = document.getElementById("totalPoints");
+  const filterButtons = document.querySelectorAll(".filters button");
+  
+  const loadArmy = () => {
+    const army = JSON.parse(localStorage.getItem("army")) || [];
+    if (army.length === 0) {
+      armyContainer.innerHTML = "<p>Your army is empty.</p>";
+      totalPointsEl.textContent = 0;
+      return;
+    }
 
-function displayUnits(list) {
-  unitsContainer.innerHTML = list.map(u => {
-    const multipleSizes = u.allowedSquads.length > 1;
-    const defaultSquad = u.allowedSquads[0];
-
-    // Dropdown if multiple options
-    const selectHTML = multipleSizes
-      ? `
-        <label for="squadSelect-${u.id}">Squad size:</label>
-        <select id="squadSelect-${u.id}" onchange="updatePoints(${u.id})">
-          ${u.allowedSquads.map(s => `<option value="${s.models}">${s.models} models</option>`).join("")}
-        </select>
-      `
-      : `<p>Size: ${defaultSquad.models} models</p>`;
-
-    return `
-      <div class="unit">
-        <a href="unit.html?id=${u.id}">
-          <img src="${u.image}" alt="${u.name}">
-        </a>
-        <h3>${u.name}</h3>
-        <p class="points" id="points-${u.id}">${defaultSquad.points} pts</p>
-        ${selectHTML}
-        <button class="button-primary" onclick="addToArmyWithSelected(${u.id})">Add to Army</button>
+    armyContainer.innerHTML = army.map((u, i) => `
+      <div class="army-item">
+        <div class="army-info">
+          <h4>${u.name}</h4>
+          <p>${u.models} models</p>
+          <p>${u.points} pts</p>
+        </div>
+        <button class="remove-btn" data-index="${i}">X</button>
       </div>
-    `;
-  }).join("");
-}
+    `).join("");
 
-function updatePoints(id) {
-  const unit = units.find(u => u.id === id);
-  const select = document.getElementById(`squadSelect-${id}`);
-  const selectedModels = parseInt(select.value);
-  const squad = unit.allowedSquads.find(s => s.models === selectedModels);
+    totalPointsEl.textContent = army.reduce((sum, u) => sum + u.points, 0);
+  };
 
-  document.getElementById(`points-${id}`).textContent = `${squad.points} pts`;
-}
+  const saveArmy = army => localStorage.setItem("army", JSON.stringify(army));
 
-function filterUnits(category) {
-  if (category === "all")
-    displayUnits(units);
-  else 
-    displayUnits(units.filter(i => i.category === category));
-}
+  const removeUnit = index => {
+    const army = JSON.parse(localStorage.getItem("army")) || [];
+    army.splice(index, 1);
+    saveArmy(army);
+    loadArmy();
+  };
 
-const filterButtons = document.querySelectorAll(".filters button");
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    filterButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+  const updatePoints = id => {
+    const unit = units.find(u => u.id === id);
+    const select = document.querySelector(`#squadSelect-${id}`);
+    const squad = unit.allowedSquads.find(s => s.models === +select.value);
+    document.querySelector(`#points-${id}`).textContent = `${squad.points} pts`;
+  };
+
+  const displayUnits = list => {
+    unitsContainer.innerHTML = list.map(u => {
+      const multiple = u.allowedSquads.length > 1;
+      const def = u.allowedSquads[0];
+
+      const selector = multiple
+        ? `<label>Squad size:
+             <select id="squadSelect-${u.id}">
+               ${u.allowedSquads.map(s => `<option value="${s.models}">${s.models} models</option>`).join("")}
+             </select>
+           </label>`
+        : `<p>Size: ${def.models} models</p>`;
+
+      return `
+        <div class="unit" data-id="${u.id}">
+          <a href="unit.html?id=${u.id}">
+            <img src="${u.image}" alt="${u.name}">
+          </a>
+          <h3>${u.name}</h3>
+          <p class="points" id="points-${u.id}">${def.points} pts</p>
+          ${selector}
+          <button class="button-primary add-army">Add to Army</button>
+        </div>`;
+    }).join("");
+  };
+
+  const filterUnits = category => {
+    const filtered = category === "all" ? units : units.filter(i => i.category === category);
+    displayUnits(filtered);
+  };
+
+  // Event delegation
+  unitsContainer.addEventListener("change", e => {
+    if (e.target.matches("select[id^='squadSelect-']")) {
+      const id = +e.target.id.split("-")[1];
+      updatePoints(id);
+    }
   });
-});
 
-function loadArmy() {
-  const army = JSON.parse(localStorage.getItem("army")) || [];
+  unitsContainer.addEventListener("click", e => {
+    if (e.target.matches(".add-army")) {
+      const id = +e.target.closest(".unit").dataset.id;
+      addToArmyWithSelected(id);
+      loadArmy();
+    }
+  });
 
-  if (army.length === 0) {
-    armyContainer.innerHTML = "<p>Your army is empty.</p>";
-    totalPointsEl.textContent = 0;
-    return;
-  }
+  armyContainer.addEventListener("click", e => {
+    if (e.target.matches(".remove-btn")) {
+      removeUnit(+e.target.dataset.index);
+      loadArmy();
+    }
+  });
 
-  armyContainer.innerHTML = army.map((u, index) => `
-    <div class="army-item">
-      <div class="army-info">
-        <h4>${u.name}</h4>
-        <p>${u.models} models</p>
-        <p>${u.points} pts</p>
-      </div>
-      <button class="remove-btn" onclick="removeUnit(${index})">X</button>
-    </div>
-  `).join("");
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      filterUnits(btn.dataset.filter);
+    });
+  });
 
-  const total = army.reduce((sum, u) => sum + u.points, 0);
-  totalPointsEl.textContent = total;
-}
-
-function removeUnit(index) {
-  const army = JSON.parse(localStorage.getItem("army")) || [];
-  army.splice(index, 1);
-  localStorage.setItem("army", JSON.stringify(army));
+  displayUnits(units);
   loadArmy();
-}
-
-const originalAdd = addToArmyWithSelected;
-addToArmyWithSelected = function(id) {
-  originalAdd(id);
-  loadArmy();
-};
-
-window.removeUnit = removeUnit;
-window.loadArmy = loadArmy;
-
-displayUnits(units);
-loadArmy();
+})();
