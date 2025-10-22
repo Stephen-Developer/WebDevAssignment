@@ -1,3 +1,12 @@
+const categoryOrder = [
+  "legendaryCharacter",
+  "character",
+  "battleLine",
+  "infantry",
+  "beast",
+  "vehicle"
+];
+
 function addToArmyWithSelected(id) {
   const unit = units.find(u => u.id === id);
   const select = document.getElementById(`squadSelect-${id}`);
@@ -15,9 +24,23 @@ function addToArmyWithSelected(id) {
   army.push({
     id: unit.id,
     name: unit.name,
+    category: unit.category,
     models: squad.models,
     points: squad.points,
     image: unit.image
+  });
+
+  army.sort((a, b) => {
+    const aCat = categoryOrder.indexOf(a.category);
+    const bCat = categoryOrder.indexOf(b.category);
+
+    // unknown categories go to the end
+    const catDiff = (aCat === -1 ? Infinity : aCat) - (bCat === -1 ? Infinity : bCat);
+    if (catDiff !== 0)
+      return catDiff;
+
+    // same category -> alphabetical
+    return a.name.localeCompare(b.name);
   });
 
   localStorage.setItem("army", JSON.stringify(army));
