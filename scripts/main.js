@@ -3,7 +3,7 @@
   const armyContainer = document.getElementById("armyContainer");
   const totalPointsEl = document.getElementById("totalPoints");
   const filterButtons = document.querySelectorAll(".filters button");
-  
+
   const loadArmy = () => {
     const army = JSON.parse(localStorage.getItem("army")) || [];
     if (army.length === 0) {

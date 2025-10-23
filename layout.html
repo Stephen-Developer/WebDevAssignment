@@ -4,10 +4,10 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles/styles.css">
-  <script src="data/data.js" defer></script>
-  <script src="scripts/utils.js" defer></script>
-  <script src="scripts/unit.js" defer></script>
-  <title>Unit Details</title>
+  <script src="data/data.js"></script>
+  <script src="scripts/utils.js"></script>
+  <script src="scripts/layout.js"></script>
+  <title>Army Layout</title>
 </head>
 
 <body>
@@ -17,13 +17,14 @@
       <a href="index.html">Builder</a>
       <a href="gallery.html">Gallery</a>
       <a href="army.html">Army</a>
-      <a href="layout.html">Layout</a>
+      <a class="active" href="layout.html">Layout</a>
       <a href="about.html">About</a>
     </nav>
   </header>
-  <main>
-    <div id="unit-detail">
-      <!-- Details added dynamically via JS-->
+  <main class="layout-container">
+    <h2>Army Table Layout</h2>
+    <div id="tableArea" class="table-area">
+      <!-- Models added here via JS -->
     </div>
   </main>
 </body>
