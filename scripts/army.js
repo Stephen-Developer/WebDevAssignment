@@ -51,7 +51,7 @@
     renderArmy();
   }
 
-  // Event delegation
+  // Event listeners
   armyContainer.addEventListener("click", e => {
     if (e.target.matches(".remove")) {
       const index = +e.target.closest(".armyscreen-item").dataset.index;

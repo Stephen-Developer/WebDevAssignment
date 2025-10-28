@@ -69,6 +69,7 @@
     thumbnailBar.scrollBy({ left: offset, behavior: "smooth" });
   }
 
+  // Event listeners
   prevBtn?.addEventListener("click", () =>
     changeImage((currentIndex - 1 + images.length) % images.length, "left")
   );
