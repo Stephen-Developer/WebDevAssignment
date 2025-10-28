@@ -35,7 +35,9 @@ nav a.active,
 }
 
 /* Buttons */
-button { cursor: pointer; }
+button {
+  cursor: pointer;
+}
 
 .button-primary {
   background-color: #2a8f2a;
@@ -71,7 +73,8 @@ button { cursor: pointer; }
 
 .unit-list {
   flex: 1;
-  min-width: 0;   /* prevents flexbox from restricting grid width */
+  min-width: 0;
+  /* prevents flexbox from restricting grid width */
 }
 
 /* Units */
@@ -183,7 +186,9 @@ button { cursor: pointer; }
   margin-right: 10px;
 }
 
-.army-info { flex: 1; }
+.army-info {
+  flex: 1;
+}
 
 .total,
 .army-total {
@@ -193,12 +198,65 @@ button { cursor: pointer; }
 }
 
 /* Gallery */
-@keyframes slideInLeft { from {transform: translateX(-100%);} to {transform: translateX(0);} }
-@keyframes slideInRight { from {transform: translateX(100%);} to {transform: translateX(0);} }
-@keyframes slideOutLeft { from {transform: translateX(0);} to {transform: translateX(-100%);} }
-@keyframes slideOutRight { from {transform: translateX(0);} to {transform: translateX(100%);} }
-@keyframes thumbnailSelect { from {transform: scale(1);} to {transform: scale(1.1);} }
-@keyframes thumbnailDeselect { from {transform: scale(1.1);} to {transform: scale(1);} }
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes thumbnailSelect {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes thumbnailDeselect {
+  from {
+    transform: scale(1.1);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
 
 .gallery-container {
   margin: 30px auto;
@@ -228,7 +286,7 @@ button { cursor: pointer; }
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
   font-size: 2rem;
@@ -237,8 +295,13 @@ button { cursor: pointer; }
   border-radius: 5px;
 }
 
-.left-arrow { left: 5px; }
-.right-arrow { right: 5px; }
+.left-arrow {
+  left: 5px;
+}
+
+.right-arrow {
+  right: 5px;
+}
 
 .thumbnail-bar {
   margin-top: 15px;
@@ -264,10 +327,28 @@ button { cursor: pointer; }
 }
 
 /* About page */
-@keyframes rotate360 { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+@keyframes rotate360 {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes pulseText {
-  0%,100% { color: #333; font-size: 4rem; }
-  50% { color: #2a8f2a; font-size: 5rem; }
+
+  0%,
+  100% {
+    color: #333;
+    font-size: 4rem;
+  }
+
+  50% {
+    color: #2a8f2a;
+    font-size: 5rem;
+  }
 }
 
 .centered-rotating {
@@ -290,4 +371,81 @@ button { cursor: pointer; }
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/*Layout*/
+.layout-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.table-area {
+  width: 100%;
+  height: 80vh;
+  border: 2px solid #333;
+  background-color: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* bases */
+.base {
+  position: absolute;
+  cursor: grab;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transform-origin: center center;
+  /*transition: transform 0.05s linear; /* smooth small updates */
+  transition: transform 0s;
+}
+
+.base img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.base.round {
+  border-radius: 50%;
+  border: 2px solid #2a8f2a;
+}
+
+.base.rectangle {
+  border: 2px solid #2a8f2a;
+}
+
+.selected-base {
+  outline: 2px solid #ffcc00;
+}
+
+.selection-box {
+  position: absolute;
+  pointer-events: none;
+  border: 1px dashed #2a8f2a;
+  background: rgba(42, 143, 42, .12);
+}
+
+.measure-line {
+  position: absolute;
+  height: 2px;
+  background: #ffcc00;
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+.measure-label {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffcc00;
+  font-size: 0.8rem;
+  padding: 1px 4px;
+  border-radius: 3px;
+  pointer-events: none;
+  white-space: nowrap;
 }

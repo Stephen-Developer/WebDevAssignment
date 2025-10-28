@@ -21,8 +21,8 @@
         <label>Squad size:
           <select id="squadSelect-${unit.id}">
             ${unit.allowedSquads
-              .map(s => `<option value="${s.models}">${s.models} models</option>`)
-              .join("")}
+        .map(s => `<option value="${s.models}">${s.models} models</option>`)
+        .join("")}
           </select>
         </label>
       `

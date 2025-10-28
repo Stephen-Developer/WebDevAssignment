@@ -7,6 +7,12 @@ const categoryOrder = [
   "vehicle"
 ];
 
+function nextInstanceId() {
+  const n = (parseInt(localStorage.getItem("armyCounter") || "0", 10) + 1);
+  localStorage.setItem("armyCounter", String(n));
+  return n;
+}
+
 function addToArmyWithSelected(id) {
   const unit = units.find(u => u.id === id);
   const select = document.getElementById(`squadSelect-${id}`);
@@ -22,6 +28,7 @@ function addToArmyWithSelected(id) {
   }
 
   army.push({
+    instanceId: nextInstanceId(),
     id: unit.id,
     name: unit.name,
     category: unit.category,
