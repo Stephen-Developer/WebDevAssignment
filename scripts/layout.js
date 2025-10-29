@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  enableGroupDrag(table, saveLayout);
+  enableGroupDrag(table, saveLayout, scale);
 
   function generateUnitLayout(instKey, count, baseSize, savedPositions) {
     const layout = [];
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Functions
 
-function enableGroupDrag(container, onRelease) {
+function enableGroupDrag(container, onRelease, scale) {
   const selected = new Set();
   const DRAG_THRESHOLD = 5;
   let selectionBox = null;
